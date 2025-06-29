@@ -3,8 +3,20 @@ from app.database import Base, engine
 from app.routers import game
 from app.routers.game import get_game_state, get_db
 from sqlalchemy.orm import Session
+from fastapi.middleware.cors import CORSMiddleware
+
+
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # or specify your Vercel domain
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 Base.metadata.create_all(bind=engine)
 app.include_router(game.router)
 
