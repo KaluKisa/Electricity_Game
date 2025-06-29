@@ -4,7 +4,7 @@ async function joinGame() {
   gameId = document.getElementById("gameId").value;
   player = document.getElementById("player").value;
 
-  const res = await fetch("https://electricity-backend.onrender.com/join", {
+  const res = await fetch("https://electricity-game.onrender.com/join", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ game_id: gameId, player })
@@ -13,7 +13,7 @@ async function joinGame() {
   const data = await res.json();
   document.getElementById("generator").textContent = data.generator;
 
-  socket = new WebSocket(`wss://electricity-backend.onrender.com/ws/${gameId}/${player}`);
+  socket = new WebSocket(`wss://electricity-game.onrender.com/ws/${gameId}/${player}`);
   socket.onmessage = (event) => {
     document.getElementById("state").textContent = event.data;
   };
@@ -24,7 +24,7 @@ async function joinGame() {
 
 async function submitBid() {
   const amount = parseFloat(document.getElementById("bid").value);
-  await fetch("https://electricity-backend.onrender.com/submit_bid", {
+  await fetch("https://electricity-game.onrender.com/submit_bid", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ game_id: gameId, player, amount })
