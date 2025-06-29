@@ -20,6 +20,7 @@ async function joinGame() {
   const res = await fetch(`https://electricity-game.onrender.com/join?game_id=${gameId}&player=${player}`, {
     method: "POST"
   });
+  
   const data = await res.json();
   document.getElementById("generator").textContent = data.generator;
 
