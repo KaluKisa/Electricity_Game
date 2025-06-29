@@ -1,5 +1,18 @@
 let gameId, player, socket;
 
+localStorage.setItem("gameId", gameId);
+localStorage.setItem("player", player);
+
+const savedGameId = localStorage.getItem("gameId");
+const savedPlayer = localStorage.getItem("player");
+
+if (savedGameId && savedPlayer) {
+  gameId = savedGameId;
+  player = savedPlayer;
+  joinGame(); // auto-reconnect
+}
+
+
 async function joinGame() {
   gameId = document.getElementById("gameId").value;
   player = document.getElementById("player").value;

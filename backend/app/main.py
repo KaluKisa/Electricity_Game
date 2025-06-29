@@ -1,8 +1,10 @@
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from app.routers import game
+from app.database import Base, engine
 
 app = FastAPI()
+Base.metadata.create_all(bind=engine)
 clients = {}
 
 app.add_middleware(
