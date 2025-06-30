@@ -46,7 +46,7 @@ async function submitBid() {
     body: JSON.stringify({
       game_id: gameId,
       player: player,
-      amount: bid  // ✅ send as 'amount'
+      amount: bid  // send as 'amount'
     })
   });
 
